@@ -12,8 +12,8 @@ const VoiceSearch = () => {
   }
 
   return (
-    <div>
-      <button onClick={SpeechRecognition.startListening}><i class="fa fa-microphone" aria-hidden="true"></i></button>
+    <div style={{marginTop:"2px"}}>
+      <button onClick={SpeechRecognition.startListening} style={{border:"none",background:"none"}}><i class="fa fa-microphone" aria-hidden="true"></i></button>
       <br/>
     </div>
   );

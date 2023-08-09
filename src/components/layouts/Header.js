@@ -8,7 +8,7 @@ import { toggle } from "../../redux/slice/uiSlice";
 import { Bubble } from "../Cart/CartFunctions";
 import CartSlider from "../Cart/CartSlider";
 import { searchItem } from "../../redux/slice/SearchProductSlice";
-import Dictaphone from "../../VoiceSearch/VoiceSearch";
+import VoiceSearch from "../../VoiceSearch/VoiceSearch";
 import { useSpeechRecognition } from "react-speech-recognition";
 
 const Header = () => {
@@ -25,6 +25,7 @@ const Header = () => {
   const navigate = useNavigate();
   useEffect(() => {
     transcript && setSearchInput(transcript);
+    listening&&dispatch(searchItem(transcript)) 
   }, [transcript]);
   const handleSearch = () => {
     dispatch(searchItem(searchInput));
@@ -40,24 +41,31 @@ const Header = () => {
           <div className="header__top">
             <div className="container">
               <div className="row">
-                <div className="col-lg-6 col-md-7">
-                  <div className="header__top__right">
+                <div className="col-lg-6 col-md-7 ">
+                  <div
+                    className="header__top__right"
+                    style={{ display: "flex" }}
+                  >
                     <input
                       type="text"
                       id="search-input"
                       value={searchInput}
-                      style={{ width: "70%" }}
+                      style={{ width: "70%", marginRight: "-20px" }}
                       placeholder="Search here....."
                       onChange={(e) => setSearchInput(e.target.value)}
                     />{" "}
-                      <Dictaphone />
+                    <VoiceSearch />
                     <img
                       src={SearchIcon}
+                      style={{
+                        height: "19px",
+                        marginTop: "5px",
+                        cursor: "pointer",
+                      }}
                       alt=""
                       onClick={() => handleSearch()}
                     />
                   </div>
-                  {console.log("transcript", transcript)}
                 </div>
 
                 <div className="col-lg-6 col-md-5">
